@@ -1,0 +1,115 @@
+openapi: '3.0.2'
+info:
+  title: Sistema Aplicado no Gerenciamento de Finanças Pessoais 
+  version: 1.0.0
+  description: A sample API that uses a financial control as an example to demonstrate features in the OpenAPI 3.0 specification
+  termsOfService: http://swagger.io/terms/
+  contact:
+    name: José Robert Gonçalves
+    email: jrobert.dev@hotmail.com
+    url: https://github.com/Jose-Robert
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+servers:
+  - url: http://management_finance_personal/api/v1
+paths:
+  /entradas-investimentos/cadastrar:
+    post:
+      summary: cadastrar receitas/entradas ou investimentos.
+      operationId: cadastrarReceitas
+      tags:
+        - Receitas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EntradaInvestimentoRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorTemplate"
+  /despesas-fixas-variaveis/cadastrar:
+    post:
+      summary: cadastrar despesas fixas, variaveis ou outros.
+      operationId: cadastrarDespesas
+      tags:
+        - Despesas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DespesasRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorTemplate"
+components:
+  schemas:
+    EntradaInvestimentoRequest:
+      type: object
+      properties:
+        valor:
+          type: number
+          format: double
+          example: 2320
+        descricao:
+          type: string
+          example: Salário
+        categoria:
+          type: string
+          example: Receitas
+        mes:
+          type: string
+          example: MARÇO
+    DespesasRequest:
+      type: object
+      properties:
+        valor:
+          type: number
+          format: double
+          example: 500
+        descricao:
+          type: string
+          example: Aluguel
+        categoria:
+          type: string
+          example: Moradia
+        mes:
+          type: string
+          example: JANEIRO
+        tipo:
+          type: string
+          example: FIXA
+    ErrorTemplate:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+          example: 500
+        message:
+          type: string
+          example: Ops, ocorreu um erro inesperado!
+        timestamp:
+          type: string
+          example: "2023-06-26T19:04:16.668+00:00"
+        path:
+          type: string
+          example: "/path"
+        error:
+          type: string
+          example: "Internal Server Error"
+        
