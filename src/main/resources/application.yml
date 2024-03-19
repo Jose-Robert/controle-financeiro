@@ -1,1 +1,11 @@
-spring.application.name=controle-financeiro
+spring:
+  application:
+    name: controle-financeiro
+  output:
+    ansi:
+      enabled: always
+
+server:
+  port: 8080
+  servlet:
+    context-path: /management_finance_personal/api/v1

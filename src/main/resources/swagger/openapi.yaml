@@ -63,8 +63,9 @@ components:
       properties:
         valor:
           type: number
-          format: double
-          example: 2320
+          multipleOf: 0.1
+          format: digits
+          example: 2300.0
         descricao:
           type: string
           example: Salário
@@ -79,8 +80,9 @@ components:
       properties:
         valor:
           type: number
-          format: double
-          example: 500
+          multipleOf: 0.1
+          example: 500.0
+          format: digits
         descricao:
           type: string
           example: Aluguel
